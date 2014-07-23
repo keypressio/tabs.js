@@ -1,0 +1,165 @@
+.tabs-shell {
+	position: relative;
+	background-color: #161712;
+	padding: 10px 10px 6px 0px;
+	height: 19px;
+	overflow: hidden;
+	width: calc(100% - 50px);
+}
+
+.tabs-shell .chrome-shell-bottom-bar {
+	position: absolute;
+	bottom: 0px;
+	height: 5px;
+	left: 0px;
+	width: 100%;
+	border-top: 1px solid rgba(0, 0, 0, 0.21);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.6);
+	background-color: #e3e3e3;
+	background-image: -webkit-linear-gradient(#e3e3e3, #e0e0e0);
+	background-image: -moz-linear-gradient(#e3e3e3, #e0e0e0);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+	z-index: 20;
+}
+
+.tabs {
+	*zoom: 1;
+	calc(100% - 80px);
+}
+
+.tabs:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.tabs * {
+	-webkit-user-select: none;
+	cursor: default;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 13px;
+}
+
+.tabs .tab {
+	float: left;
+	position: relative;
+	height: 25px;
+	border: 0px;
+	margin: 0px;
+	z-index: 1;
+	box-shadow: inset -1px 1px #3f403a, 0 -1px rgba(0, 0, 0, 0.2);
+	background-image: -webkit-linear-gradient(top, #4a4a4a, #333333);
+	background-image: -ms-linear-gradient(top, #4a4a4a 0%, #333333 100%);
+	transition: width 0.2s;
+	padding: 0 20px 0 20px;
+	-ms-transform: skewX(30deg);
+	-webkit-transform: skewX(30deg);
+	left: 10px;
+	border-radius: 3px 3px 0 0;
+}
+
+.tabs .tab:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -15px;
+	height: 30px;
+	width: 40px;
+	border-top-left-radius: 3px;
+	-ms-transform: skewX(133deg);
+	-webkit-transform: skewX(133deg);
+	box-shadow: inset 1px 1px 0 #484848, -4px 0px 4px rgba(0, 0, 0, 0.1);
+	background-image: inherit;
+	border-radius: 3px;
+}
+
+.tabs .tab:after {
+	content: '';
+	box-shadow: inset 1px 1px 0 #484848, -4px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tabs .tab {
+	box-shadow: inset -1px 1px #3f403a, 0 -1px rgba(0, 0, 0, 0.2);
+	margin: 0 5px 0 15px;
+}
+
+.tabs .tab.current, .tabs .tab.current:before {
+	z-index: 999;
+	background-image: -webkit-linear-gradient(top, #343434, #272822);
+	background-image: -ms-linear-gradient(top, #343434, #272822);
+}
+
+.tabs .tab .title {
+	color: #e1e3e1;
+	padding: 5px 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	-ms-transform: skewX(-30deg);
+	-webkit-transform: skewX(-30deg);
+	position: relative;
+	left: -20px;
+	z-index: 1000;
+}
+
+.tabs .tab .title {
+	padding: 5px 0px 5px 0px;
+}
+
+.tabs .tab .close {
+	position: absolute;
+	top: 6px;
+	right: 10px;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	z-index: 2;
+	-ms-transform: skewX(-30deg);
+	-webkit-transform: skewX(-30deg);
+}
+
+.tabs .tab .close {
+	top: 5px;
+}
+
+.tabs .tab .close:before {
+	content: "\00D7";
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 14px;
+	width: 14px;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 11px;
+	line-height: 12px;
+	color: #888888;
+	text-shadow: 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.tabs .tab .close:hover:before, .tabs .tab .close:active:before {
+	content: "\00D7";
+	-webkit-font-smoothing: antialiased;
+	color: white;
+	text-shadow: 0 1px #b9554c;
+	border: 0px;
+	height: 14px;
+	width: 14px;
+}
+
+.tabs .tab .close:hover, .tabs .tab .close:active {
+	box-shadow: inset 0 1px #3f403a, 0 -1px rgba(0, 0, 0, 0.2);
+	background: #dd837b;
+}
+
+.tabs .tab .close:active:before {
+	box-shadow: inset 0 1px #3f403a, 0 -1px rgba(0, 0, 0, 0.2);
+}
+
+.tabs .tab.changes .close:before {
+	content: " ";
+	height: 8px;
+	width: 8px;
+	border: 3px solid rgb(9, 114, 165);
+}
