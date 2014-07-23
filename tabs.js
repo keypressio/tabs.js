@@ -85,7 +85,7 @@ define(['jquery', 'underscore'], function($, _){
 				if (totalWidth >= self.shell.width()) {
 					maxWidth = (100 / (tabs.length));
 
-					tabs.css({width: '-webkit-calc(' + maxWidth + '% - 60px)'});
+					tabs.css({width: 'calc(' + maxWidth + '% - 60px)'});
 				} else {
 					tabs.css({width: 'auto'});
 				}
