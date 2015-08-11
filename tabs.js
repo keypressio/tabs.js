@@ -3,14 +3,15 @@ define(['jquery', 'underscore'], function($, _){
 		template,
 		Tabs;
 
-	template = '<div class="tab">\n<div class="title"></div>\n<div class="close"></div>\n</div>';
+	template = '<div class="tab">\n<div class="title" title=""></div>\n<div class="close"></div>\n</div>';
 
 	defaultNewTabData = {
 		title: 'untitled',
+		hover: 'untitled',
 		data: {}
 	};
 
-	var Tabs = function(options) {
+	Tabs = function(options) {
 		var self = this;
 
 		this.shell = options.shell;
@@ -18,20 +19,20 @@ define(['jquery', 'underscore'], function($, _){
 		$.extend(this.shell.data(), options);
 
 		this.shell.find('.tab').each(function() {
-			return $(this).data().tabData = {
+			return ($(this).data().tabData = {
 				data: {}
-			};
+			});
 		});
 	
 		$(window).on('resize', _.debounce(function(){
-			self.render()
+			self.render();
 		}, 300));
 
 		this.bound = [];
 
 		_.bindAll(this);
 		this.render();
-	}
+	};
 
 	Tabs.prototype = {
 		tabs: [],
@@ -73,6 +74,7 @@ define(['jquery', 'underscore'], function($, _){
 
 			tabs.css({maxWidth: '100%'});
 
+			// @todo I don't remember why this is here.
 			tabs.each(function() {
 				$(this).width($(this).width());
 			});
@@ -82,7 +84,7 @@ define(['jquery', 'underscore'], function($, _){
 					return memo + $(tab).width() + 60;
 				}, 0);
 
-				if (totalWidth >= self.shell.width()) {
+				if (totalWidth >= self.shell.width() && tabs.length > 1) {
 					maxWidth = (100 / (tabs.length));
 
 					tabs.css({width: 'calc(' + maxWidth + '% - 60px)'});
@@ -126,7 +128,7 @@ define(['jquery', 'underscore'], function($, _){
 				});
 
 				return tab.find('.close').unbind('click').click(function() {
-					tab.trigger('close')
+					tab.trigger('close');
 				});
 			});
 		},
@@ -155,7 +157,7 @@ define(['jquery', 'underscore'], function($, _){
 
 			tab.addClass('current');
 			tab.trigger('activate');
-			
+
 			return this.render();
 		},
 		closeTab: function(tab) {
@@ -169,8 +171,12 @@ define(['jquery', 'underscore'], function($, _){
 			return this.render();
 		},
 		updateTab: function(tab, tabData) {
-			tab.find('.title').html(tabData.title);
-			return tab.data().tabData = tabData;
+			var foundTab = tab.find('.title');
+
+			foundTab.html(tabData.title);
+			foundTab.attr({title: tabData.hover});
+			
+			return (tab.data().tabData = tabData);
 		}
 	};
 
